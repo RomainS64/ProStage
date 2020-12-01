@@ -2,11 +2,27 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}ProStage{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block header %}
+        <h1>ProStage</h1>
+        {% endblock %}
         {% block body %}{% endblock %}
+
+
+        {% block footer %}
+        <footer>
+          <p>2020 Romain Salha, mail:salha.romain64@gmail.com</p>
+        </footer>
+        {% endblock %}
+
         {% block javascripts %}{% endblock %}
+
+
     </body>
+
+
+
 </html>
