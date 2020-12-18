@@ -9,16 +9,24 @@
     </head>
     <body>
         {% block header %}
-        <h1>ProStage</h1>
+          <section class="pt-5 pb-5 bg-dark inner-header">
+          <div class="container">
+	        <div class="row">
+		      <div class="col-md-12 text-center">
+			    <h1 class="mt-0 mb-3 text-white">ProStage</h1>
+			    <div class="breadcrumbs">
+			    <p class="mb-0 text-white"><a class="text-white" href="accueil">Tout</a> / <a class="text-white" href="entreprises">Entreprises</a>  /  <a class="text-white" href="formations">Formations</a></p>
+			    </div>
+		      </div>
+	        </div>
+          </div>
+          </section>
         {% endblock %}
-        {% block body %}{% endblock %}
 
-
-        {% block footer %}
-        <footer>
-          <p>2020 Romain Salha, mail:salha.romain64@gmail.com</p>
-        </footer>
+        {% block body %}
+        </br></br>
         {% endblock %}
+
 
         {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -27,6 +35,20 @@
 
     </body>
 
+    {% block footer %}
+    <footer>
+      <section class="pt-5 pb-5 bg-dark inner-header">
+      <div class="container">
+      <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="mb-0 text-white">ProStage-2020 par Romain Salha, salha.romain64@gmail.com</p>
+      </div>
+      </div>
+      </div>
+      </section>
+
+    </footer>
+    {% endblock %}
 
 
 </html>
