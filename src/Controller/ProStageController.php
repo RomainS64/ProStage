@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProStageController extends AbstractController
 {
     /**
-     * @Route("/accueil", name="prostage")
+     * @Route("/", name="prostage")
      */
     public function index(): Response
     {
