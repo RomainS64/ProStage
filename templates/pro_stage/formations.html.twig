@@ -1,5 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Cette page affichera la liste des formations de l'IUT</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    	{%for formation in formations%}
+		<div class="col-md-4 col-xs-1 mx-auto">
+			<div class="card">
+				<div class="card-body">
+				  <h5 class="card-title">Intitule : {{formation.intitule}}</h5>
+				
+				  <a href="{{path('prostages_formations_stage',{'id' : formation.id})}}" class="btn btn-primary">Plus de détails</a>
+				</div>
+			</div>
+		</div>
+		{%endfor%}
+    </div>
+</div>
+
 {% endblock %}
