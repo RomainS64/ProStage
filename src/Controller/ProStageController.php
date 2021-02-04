@@ -22,6 +22,7 @@ class ProStageController extends AbstractController
 
       return $this->render('pro_stage/index.html.twig',['stages' => $stages]);
     }
+
     /**
      * @Route("/entreprises", name="entreprises")
      */
@@ -33,6 +34,7 @@ class ProStageController extends AbstractController
 
 		  return $this->render('pro_stage/entreprises.html.twig', ['entreprises' => $entreprises]);
     }
+
     /**
      * @Route("/formations", name="formations")
      */
@@ -44,31 +46,31 @@ class ProStageController extends AbstractController
 
 		return $this->render('pro_stage/formations.html.twig', ['formations' => $formations]);
     }
+
     /**
-     * @Route("/formation/{id}/stages", name="prostages_formations_stage")
+     * @Route("/formation/{nom}/stages", name="prostages_formations_stage")
      */
-    public function getByFormation(Formation $stages) // La vue affichera la liste des stages proposés pour une formation
+    public function getByFormation($nom) // La vue affichera la liste des stages proposés pour une formation
     {
-        // Envoyer les ressources récupérées à la vue chargée de les afficher
-        return $this->render('pro_stage/index.html.twig', [ 'stages' => $stages->getStages() ]);
+        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+        $stages = $repositoryStage->findStageParFormation($nom);
+        return $this->render('pro_stage/index.html.twig', [ 'stages' => $stages , 'nom' => $nom]);
+
     }
     /**
-     * @Route("/entreprise/{id}/stages", name="prostages_entreprises_stage")
+     * @Route("/entreprise/{nom}/stages", name="prostages_entreprises_stage")
      */
-    public function getByEntreprise(Entreprise $stages) // La vue affichera la liste des stages proposés par une entreprise
+    public function getByEntreprise($nom) // La vue affichera la liste des stages proposés par une entreprise
     {
-        // Envoyer les ressources récupérées à la vue chargée de les afficher
-        return $this->render('pro_stage/index.html.twig', [ 'stages' => $stages->getStages() ]);
-    }
+      $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+      $stages = $repositoryStage->findStageParEntreprise($nom);
+      return $this->render('pro_stage/index.html.twig', [ 'stages' => $stages, 'nom' => $nom ]);
+          }
     /**
      * @Route("/stages/{id}", name="stage")
      */
-    public function stages($id)
+    public function stages(Stage $stage): Response
     {
-
-      return $this->render('pro_stage/stages.html.twig', [
-          'controller_name' => 'ProStageController',
-          'id' => $id
-      ]);
+      return $this->render('prostages/stages.html.twig', ['stage' => $stage]);
     }
 }
