@@ -11,11 +11,14 @@
 				  <p class="card-text">Adresse : {{entreprise.adresse}}</p>
 				  <p class="card-text">Activité : {{entreprise.milieu}}</p>
 				  <a href="{{path('prostages_entreprises_stage',{'nom' : entreprise.nom})}}" class="btn btn-primary">Plus de détails</a>
+          <a href="/modifier-entreprise/{{entreprise.nom}}" class="btn btn-primary">Modifier l'entreprise</a>
 				</div>
 			</div>
 		</div>
 		{%endfor%}
-    </div>
+
+
+
 </div>
 
 {% endblock %}

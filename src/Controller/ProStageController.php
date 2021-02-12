@@ -24,7 +24,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprises", name="entreprises")
+     * @Route("/entreprise", name="entreprises")
      */
     public function entreprises()
     {
@@ -72,5 +72,59 @@ class ProStageController extends AbstractController
     public function stages(Stage $stage): Response
     {
       return $this->render('prostages/stages.html.twig', ['stage' => $stage]);
+    }
+
+    /**
+     * @Route("/creer-entreprise", name="nouvelle_entreprise")
+     */
+    public function nouvelleEntreprise(Request $request)
+    {
+        $entreprise = new Entreprise();
+
+        $form = $this -> createFormBuilder($entreprise)
+                      -> add('nom')
+                      -> add('adresse')
+                      -> add('milieu')
+                      ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('/');
+       }
+
+        return $this->render('pro_stage/creationEntreprise.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/modifier-entreprise/{nom}", name="modifier_entreprise")
+     */
+    public function edit(Request $request, Entreprise $entreprise)
+    {
+        $form = $this -> createFormBuilder($entreprise)
+                      -> add('nom')
+                      -> add('adresse')
+                      -> add('milieu')
+                      ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('accueil');
+       }
+
+        return $this->render('pro_stage/modifierEntreprise.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
