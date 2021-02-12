@@ -3,6 +3,9 @@
 
 {% block body %}
 
+	{%if nom is defined%}
+	<h1>{{nom}}</h1>
+	{%endif%}
 	<div class="container-fluid">
 	<div class="row">
 			{%for stage in stages%}
@@ -13,7 +16,7 @@
 						<h5 class="card-title"> {{stage.intitule}} </h5>
 						<p class="card-text">Durée : {{stage.duree}} jours</p>
 						<p class="card-text">Date de début : {{stage.dateDebut | date("d/m/Y")}}</p>
-
+						<a href="{{path('stage',{'id' : stage.id})}}" class="btn btn-primary">Plus de détails</a>
 					</div>
 				</div>
 			</div>

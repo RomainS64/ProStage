@@ -1,5 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Cette page affichera le descriptif du stage ayant pour identifiant {{id}}</h1>
+<div class="container-fluid">
+  <div class="row">
+			<div class="col-md-4 col-xs-1 mx-auto">
+				<div class="card">
+					<div class="card-body">
+					<img src="https://picsum.photos/300/" class="card-img-top" alt="Image">
+					  <h5 class="card-title">Titre : {{stage.intitule}} </h5>
+					  <p class="card-text">Durée : {{stage.duree}}</p>
+					  <p class="card-text">Date de début : {{stage.dateDebut | date("d/m/Y")}} jours</p>
+					  <p class="card-text">Entreprise : {{stage.entreprise.nom}}</p>
+					  <p class="card-text">Descriptif : {{stage.descriptif}}</p>
+					</div>
+				</div>
+			</div>
+    </div>
+</div>
 {% endblock %}
