@@ -89,7 +89,7 @@ class ProStageController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid() ) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($entreprise);
             $entityManager->flush();
@@ -115,12 +115,12 @@ class ProStageController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($entreprise);
             $entityManager->flush();
 
-            return $this->redirectToRoute('http://127.0.0.1:8000/');
+            return $this->redirectToRoute('http://127.0.0.1:8000/Entreprises');
        }
 
         return $this->render('pro_stage/modifierEntreprise.html.twig', [
