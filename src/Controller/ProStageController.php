@@ -71,7 +71,7 @@ class ProStageController extends AbstractController
      */
     public function stages(Stage $stage): Response
     {
-      return $this->render('prostages/stages.html.twig', ['stage' => $stage]);
+      return $this->render('pro_stage/stages.html.twig', ['stage' => $stage]);
     }
 
     /**

@@ -9,10 +9,10 @@
 	<div class="container-fluid">
 	<div class="row">
 			{%for stage in stages%}
-			<div class="col-md-4 col-xs-1 mx-auto">
+			<div class="col-md-3 col-xs-1 mx-auto">
 				<div class="card">
 					<div class="card-body">
-					<img src="https://picsum.photos/350/" class="card-img-top" alt="Image">
+					<img src="https://picsum.photos/350/" class="img-thumbnail" alt="Image">
 						<h5 class="card-title"> {{stage.intitule}} </h5>
 						<p class="card-text">Durée : {{stage.duree}} jours</p>
 						<p class="card-text">Date de début : {{stage.dateDebut | date("d/m/Y")}}</p>
