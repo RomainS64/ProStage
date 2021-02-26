@@ -26,6 +26,11 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide")
+     * @Assert\Length(
+     * min=4,
+     * minMessage="le nom doit avoir minimum {{ limit }} caracteres"
+     * )
      */
     private $adresse;
 
@@ -36,6 +41,7 @@ class Entreprise
 
     /**
      * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprise")
+     *@Assert\NotBlank(message="Le champ ne peut pas être vide")
      */
     private $stages;
 
