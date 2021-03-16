@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -81,11 +83,7 @@ class ProStageController extends AbstractController
     {
         $entreprise = new Entreprise();
 
-        $form = $this -> createFormBuilder($entreprise)
-                      -> add('nom')
-                      -> add('adresse')
-                      -> add('milieu')
-                      ->getForm();
+        $form = $this -> CreateForm(EntrepriseType::class,$entreprise);
 
         $form->handleRequest($request);
 
@@ -107,11 +105,7 @@ class ProStageController extends AbstractController
      */
     public function edit(Request $request, Entreprise $entreprise)
     {
-        $form = $this -> createFormBuilder($entreprise)
-                      -> add('nom')
-                      -> add('adresse')
-                      -> add('milieu')
-                      ->getForm();
+        $form = $this -> CreateForm(EntrepriseType::class, $entreprise);
 
         $form->handleRequest($request);
 
@@ -127,4 +121,41 @@ class ProStageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+   * @Route("/creer-stage", name="prostages_nouveau_stage")
+   */
+   public function newStage(Request $request)
+     {
+         $stage = new Stage();
+
+         $form = $this -> createFormBuilder($stage)
+                         -> add('intitule')
+                         -> add('description')
+                         -> add('dateDebut')
+                         -> add('duree')
+                         -> add('competencesRequises')
+                         -> add('experienceRequise')
+                         -> add('entreprise',EntrepriseType::class)
+                         ->add('formation',EntityType::class,
+                         ['class'=>Formation::class,
+                         'choice_label'=>'intitule',
+                         'multiple'=>true,
+                         'expanded'=>true])
+                         ->getForm();
+
+         $form->handleRequest($request);
+
+         if ($form->isSubmitted() && $form->isValid()) {
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($stage);
+             $entityManager->flush();
+
+             return $this->redirectToRoute('accueil');
+        }
+
+         return $this->render('pro_stage/creationStage.html.twig', [
+             'form' => $form->createView(),
+         ]);
+     }
 }
