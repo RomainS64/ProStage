@@ -7,10 +7,27 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $jm =  new User();
+       $jm->setPrenom("JEAN-MARC");
+       $jm->setNom("FITON");
+       $jm->setEmail("jmFiton@gmail.com");
+       $jm->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+       $jm->setPassword('1234');
+       $manager->persist($jm);
+
+       $yb =  new User();
+       $yb->setPrenom("Yann");
+       $yb->setNom("Barret");
+       $yb->setEmail("YBarret@gmail.com");
+       $yb->setRoles(['ROLE_USER']);
+       $yb->setPassword('1234');
+       $manager->persist($yb);
+
         $faker = \Faker\Factory::create('fr_FR');
 
         ///Creer les diférents types de Formations///
