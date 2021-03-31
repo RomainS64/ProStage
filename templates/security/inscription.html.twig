@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h5 class="card-header">Inscription</h5>
+{{ form_start(form) }}
+{{ form_row(form.nom, {'attr':{'placeholder': "Nom de famille"}})}}
+{{ form_row(form.prenom, {'attr':{'placeholder': "Prénom"}})}}
+{{ form_row(form.email, {'attr':{'placeholder': "Adresse mail"}})}}
+{{ form_row(form.password, {'attr':{'placeholder': "Mot de passe"}})}}
+
+<button type="submit" class="btn btn-dark">S'inscrire</button>
+{{ form_end(form) }}
+{% endblock %}
