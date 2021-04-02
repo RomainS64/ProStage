@@ -1,0 +1,35 @@
+easy_admin:
+    formats:
+        date: 'd/m/Y'
+    site_name: ProStage
+    list:
+        collapse_actions: true
+    entities:
+        Stage:
+            class: App\Entity\Stage
+            label: 'Stages'
+            list:
+                title: '%%entity_label%% ajoutés récemment'
+        Formation:
+            class: App\Entity\Formation
+            label: 'Formations'
+            list:
+                title: '%%entity_label%% ajoutés récemment'
+        Entreprise:
+            class: App\Entity\Entreprise
+            label: 'Entreprises'
+            list:
+                title: '%%entity_label%% ajoutés récemment'
+        User:
+            class: App\Entity\User
+            label: 'Utilisateurs'
+            list:
+                title: '%%entity_label%% ajoutés récemment'
+        # change the following to the namespaces of your own entities
+    design:
+        brand_color: '#ff7f00'
+        menu:
+            - { entity: 'Entreprise', icon: 'building' }
+            - { entity: 'Formation', icon: 'graduation-cap' }
+            - { entity: 'Stage', icon: 'star' }
+            - { entity: 'User', icon: 'user' }

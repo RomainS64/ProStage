@@ -19,6 +19,7 @@
             <a class="text-white" href="http://127.0.0.1:8000/">Tout</a> /
             <a class="text-white" href="http://127.0.0.1:8000/entreprise">Entreprises</a>  / 
             <a class="text-white" href="http://127.0.0.1:8000/formations">Formations</a> /
+            <a class="text-white" href="{{path('formation_index')}}"> Formation CRUD</a> /
             {% if is_granted('ROLE_USER') %}
             <a class="text-white" href="{{path('security_logout')}}"> {{app.user.prenom}} {{app.user.nom}} - Déconnexion</a>
 
